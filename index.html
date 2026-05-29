@@ -13,8 +13,27 @@
     --accent: #c8f135;
     --accent2: #4af0c4;
     --text: #e8e8e0;
+    --text-dim: #aaa9a0;
     --muted: #666660;
     --tag-bg: #1a1a1a;
+    --border-hover: #333333;
+    --ai-bg: #0d1a10;
+    --ai-border: #1e3a2a;
+  }
+
+  body.light-theme {
+    --bg: #ffffff;
+    --surface: #f7f7f2;
+    --border: #e0e0da;
+    --accent: #8ca510;
+    --accent2: #2d9e81;
+    --text: #1a1a18;
+    --text-dim: #4a4a45;
+    --muted: #7a7a70;
+    --tag-bg: #eeeeea;
+    --border-hover: #b0b0af;
+    --ai-bg: #f0faf4;
+    --ai-border: #c2e0cf;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +45,50 @@
     font-size: 13px;
     line-height: 1.7;
     min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
   }
+
+  /* ─── THEME TOGGLE ─── */
+  .theme-toggle {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .theme-toggle:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+
+  .theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .sun-icon { display: none; }
+  .moon-icon { display: block; }
+
+  body.light-theme .sun-icon { display: block; }
+  body.light-theme .moon-icon { display: none; }
 
   .page {
     max-width: 900px;
@@ -95,7 +157,7 @@
     margin-bottom: 40px;
     font-size: 13px;
     line-height: 1.8;
-    color: #c8c8c0;
+    color: var(--text-dim);
   }
 
   .summary strong {
@@ -138,7 +200,7 @@
   }
 
   .card:hover {
-    border-color: #333;
+    border-color: var(--border-hover);
   }
 
   .card-header {
@@ -172,7 +234,7 @@
 
   .card p {
     font-size: 12.5px;
-    color: #aaa9a0;
+    color: var(--text-dim);
     line-height: 1.75;
   }
 
@@ -204,7 +266,7 @@
     display: inline-block;
     background: var(--tag-bg);
     border: 1px solid var(--border);
-    color: #888;
+    color: var(--muted);
     font-size: 10px;
     padding: 2px 7px;
     margin: 3px 3px 0 0;
@@ -243,8 +305,8 @@
   }
 
   .skill-block.ai-block {
-    border-color: #1e3a2a;
-    background: #0d1a10;
+    border-color: var(--ai-border);
+    background: var(--ai-bg);
     grid-column: 1 / -1;
   }
 
@@ -312,7 +374,7 @@
   }
 
   .job-card:hover {
-    border-color: #333;
+    border-color: var(--border-hover);
     background: var(--surface);
   }
 
@@ -339,7 +401,7 @@
 
   .job-desc {
     font-size: 12px;
-    color: #888;
+    color: var(--muted);
     margin-top: 8px;
     line-height: 1.7;
   }
@@ -413,6 +475,15 @@
 </style>
 </head>
 <body>
+<script>
+  if (localStorage.getItem('theme') === 'light') {
+    document.body.classList.add('light-theme');
+  }
+</script>
+<button class="theme-toggle" aria-label="Toggle theme">
+  <svg class="sun-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  <svg class="moon-icon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
 <div class="page">
 
   <!-- ══════════ RESUME ══════════ -->
@@ -420,7 +491,7 @@
   <header class="header">
     <div>
       <div class="name">Bekdaulet<br><span>Bolatov</span></div>
-      <div class="title-tag">Software Engineer · iOS &amp; Web3 &amp; backend</div>
+      <div class="title-tag">Software Engineer · iOS, Web3 &amp; backend</div>
     </div>
     <div class="contact-grid">
       <a href="mailto:bolatovbekdaulet4@gmail.com">bolatovbekdaulet4@gmail.com</a>
@@ -617,5 +688,12 @@
   </div>
 
 </div>
+<script>
+  const toggle = document.querySelector('.theme-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+    localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+  });
+</script>
 </body>
 </html>
