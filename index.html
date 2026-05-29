@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bekdaulet Bolatov — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: #1e1e1e;
+    --accent: #c8f135;
+    --accent2: #4af0c4;
+    --text: #e8e8e0;
+    --muted: #666660;
+    --tag-bg: #1a1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  /* ─── HEADER ─── */
+  .header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 36px;
+    margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 24px;
+    align-items: end;
+  }
+
+  .name {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .name span {
+    color: var(--accent);
+  }
+
+  .title-tag {
+    display: inline-block;
+    margin-top: 10px;
+    background: var(--accent);
+    color: #0a0a0a;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: right;
+  }
+
+  .contact-grid a, .contact-grid span {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.2s;
+  }
+
+  .contact-grid a:hover { color: var(--accent); }
+
+  /* ─── SUMMARY ─── */
+  .summary {
+    background: var(--surface);
+    border-left: 3px solid var(--accent);
+    padding: 20px 24px;
+    margin-bottom: 40px;
+    font-size: 13px;
+    line-height: 1.8;
+    color: #c8c8c0;
+  }
+
+  .summary strong {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ─── EXPERIENCE / PROJECT CARDS ─── */
+  .card {
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .card:hover {
+    border-color: #333;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .card-meta {
+    font-size: 11px;
+    color: var(--muted);
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+
+  .card-company {
+    color: var(--accent2);
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .card p {
+    font-size: 12.5px;
+    color: #aaa9a0;
+    line-height: 1.75;
+  }
+
+  .result-line {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .result-line::before {
+    content: '→';
+  }
+
+  .result-line a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s;
+  }
+
+  .result-line a:hover {
+    color: #fff;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--tag-bg);
+    border: 1px solid var(--border);
+    color: #888;
+    font-size: 10px;
+    padding: 2px 7px;
+    margin: 3px 3px 0 0;
+    letter-spacing: 0.5px;
+  }
+
+  .badge.highlight {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .badge.ai {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .skill-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+  }
+
+  .skill-block-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .skill-block.ai-block {
+    border-color: #1e3a2a;
+    background: #0d1a10;
+    grid-column: 1 / -1;
+  }
+
+  .skill-block.ai-block .skill-block-label {
+    color: var(--accent2);
+  }
+
+  /* ─── DIVIDER ─── */
+  .page-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 60px 0;
+  }
+
+  /* ─── JOBS SECTION ─── */
+  .jobs-header {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+  }
+
+  .jobs-header span { color: var(--accent); }
+
+  .jobs-subheader {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 36px;
+  }
+
+  .job-category {
+    margin-bottom: 32px;
+  }
+
+  .job-category-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .job-category-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .job-card {
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    align-items: start;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .job-card:hover {
+    border-color: #333;
+    background: var(--surface);
+  }
+
+  .job-card.remote {
+    border-left: 3px solid var(--accent2);
+  }
+
+  .job-card.local {
+    border-left: 3px solid #8060ff;
+  }
+
+  .job-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .job-company {
+    font-size: 12px;
+    color: var(--accent2);
+    margin-top: 2px;
+  }
+
+  .job-desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: 8px;
+    line-height: 1.7;
+  }
+
+  .job-tags {
+    margin-top: 10px;
+  }
+
+  .salary-box {
+    text-align: right;
+  }
+
+  .salary {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .salary-kzt {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+
+  .job-location {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 8px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent2);
+    display: inline-block;
+  }
+
+  .dot.local {
+    background: #8060ff;
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 620px) {
+    .page { padding: 32px 20px; }
+    .header { grid-template-columns: 1fr; }
+    .contact-grid { text-align: left; }
+    .name { font-size: 30px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .job-card { grid-template-columns: 1fr; }
+    .salary-box { text-align: left; }
+    .job-location { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════ RESUME ══════════ -->
+
+  <header class="header">
+    <div>
+      <div class="name">Bekdaulet<br><span>Bolatov</span></div>
+      <div class="title-tag">Software Engineer · iOS &amp; Web3</div>
+    </div>
+    <div class="contact-grid">
+      <a href="mailto:bolatovbekdaulet4@gmail.com">bolatovbekdaulet4@gmail.com</a>
+      <span>+7 (708) 751-51-69</span>
+      <span>Astana, Kazakhstan / Remote</span>
+      <span>English: B2 · Russian: Native</span>
+    </div>
+  </header>
+
+  <div class="summary">
+    <strong>AI-augmented engineer</strong> who ships what a 3-person team ships — solo. I combine native iOS development (Swift/SwiftUI) with on-chain engineering (Solidity, Arbitrum, The Graph) and a <strong>vibe-coding workflow</strong> powered by LLMs, RAG pipelines, and AI-native IDEs. I think in products and architectures, not just features — and I move fast enough to validate, build, and deploy in the time others spend in planning. Currently seeking <strong>Founding Engineer</strong> or Senior iOS/Web3 roles in global startups.
+  </div>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <div class="section">
+    <div class="section-label">Experience</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Software Engineering Intern</div>
+          <div class="card-company">KMG-Kumkol · Astana, Kazakhstan</div>
+        </div>
+        <div class="card-meta">2025 – Present</div>
+      </div>
+      <p>Working on internal tooling and digital infrastructure within Kazakhstan's largest oil &amp; gas company's IT division. Applying Python-based AI integration and backend development to automate workflows and improve operational data pipelines.</p>
+      <div class="result-line">Delivered production-grade tooling in an enterprise environment as a 2nd-year student.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Research Presenter — Zhas Galym Conference</div>
+          <div class="card-company">Nazarbayev University · Astana, Kazakhstan</div>
+        </div>
+        <div class="card-meta">2025</div>
+      </div>
+      <p>Presented a peer-reviewed research paper on AI-driven linguistic learning at Kazakhstan's premier republican student science conference. Completed and submitted the thesis weeks ahead of deadline.</p>
+      <div class="result-line">Research accepted and presented at NU — top-tier academic venue in Kazakhstan.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROJECTS ─── -->
+  <div class="section">
+    <div class="section-label">Projects</div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Prediction Market Protocol — Arbitrum Sepolia</div>
+        </div>
+        <div class="card-meta">Web3 / DeFi</div>
+      </div>
+      <p>Architected and deployed a fully on-chain prediction market protocol on Arbitrum Sepolia. Designed a smart contract system consisting of <em>MarketFactory</em>, <em>GovernanceToken</em>, and <em>FeeVault</em> contracts. Built a React frontend with Wagmi + Viem hooks for wallet interaction and integrated The Graph subgraph for real-time event indexing and query serving.</p>
+      <div style="margin-top: 10px;">
+        <span class="badge highlight">Solidity</span>
+        <span class="badge highlight">Arbitrum</span>
+        <span class="badge highlight">The Graph</span>
+        <span class="badge">Wagmi / Viem</span>
+        <span class="badge">React</span>
+        <span class="badge">TypeScript</span>
+      </div>
+      <div class="result-line">End-to-end protocol: contracts + subgraph + UI, shipped solo. <a href="https://github.com/BekdauletBol" target="_blank">[GitHub Link]</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">public.safe — Urban Pedestrian Safety System</div>
+        </div>
+        <div class="card-meta">AI / CV · 🏆 NSRC 1st Place</div>
+      </div>
+      <p>Designed and built a real-time pedestrian detection and safety zone monitoring system using YOLOv8n. Implemented Footpoint detection + Polygon-In-Polygon (PIP) zone logic for crosswalk compliance analysis. Packaged as a FastAPI backend with configurable zones, suitable for GovTech/Smart City deployments. Presented at Nazarbayev University SEDS Research Conference and 7MR competition.</p>
+      <div style="margin-top: 10px;">
+        <span class="badge highlight">YOLOv8</span>
+        <span class="badge highlight">FastAPI</span>
+        <span class="badge">Python</span>
+        <span class="badge">OpenCV</span>
+        <span class="badge">Computer Vision</span>
+      </div>
+      <div class="result-line">1st place — National Student Research Competition (NSRC). Published research. <a href="#" target="_blank">[Link]</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">inVision U — AI Candidate Scoring Platform</div>
+        </div>
+        <div class="card-meta">AI / HR-Tech · Hackathon</div>
+      </div>
+      <p>Built a full-stack AI hiring tool during a hackathon: automated candidate scoring, document verification (IELTS PDF extraction via PyMuPDF + Claude Vision API), and a FastAPI backend integrated with the Anthropic SDK. Solved a non-trivial IDP-issued PDF name extraction bug under competition pressure.</p>
+      <div style="margin-top: 10px;">
+        <span class="badge highlight">Anthropic SDK</span>
+        <span class="badge highlight">FastAPI</span>
+        <span class="badge">Claude Vision</span>
+        <span class="badge">PyMuPDF</span>
+        <span class="badge">Docker</span>
+      </div>
+      <div class="result-line">Full product — ideation to deployment — within hackathon timeframe. <a href="#" target="_blank">[Link]</a></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Engine — Research &amp; Knowledge Platform</div>
+        </div>
+        <div class="card-meta">Platform Architecture</div>
+      </div>
+      <p>Scaled and modernized a comprehensive research/knowledge platform. Led architectural refactoring to improve system modularity, performance under load, and extensibility for future AI-powered features.</p>
+      <div style="margin-top: 10px;">
+        <span class="badge">Architecture</span>
+        <span class="badge">Scalability</span>
+        <span class="badge">Backend</span>
+      </div>
+      <div class="result-line">Delivered major architectural improvements; platform now production-ready. <a href="#" target="_blank">[Link]</a></div>
+    </div>
+  </div>
+
+  <!-- ─── SKILLS ─── -->
+  <div class="section">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-label">iOS / Mobile</div>
+        <span class="badge highlight">Swift</span>
+        <span class="badge highlight">SwiftUI</span>
+        <span class="badge">UIKit</span>
+        <span class="badge">Xcode</span>
+        <span class="badge">App Architecture</span>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Web3 / Blockchain</div>
+        <span class="badge highlight">Solidity</span>
+        <span class="badge highlight">Arbitrum</span>
+        <span class="badge highlight">The Graph</span>
+        <span class="badge">Wagmi</span>
+        <span class="badge">Viem</span>
+        <span class="badge">Hardhat</span>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Backend / General</div>
+        <span class="badge">Python</span>
+        <span class="badge">FastAPI</span>
+        <span class="badge">TypeScript</span>
+        <span class="badge">React</span>
+        <span class="badge">Docker</span>
+        <span class="badge">Git</span>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">ML / CV</div>
+        <span class="badge">YOLOv8</span>
+        <span class="badge">OpenCV</span>
+        <span class="badge">PyMuPDF</span>
+        <span class="badge">Anthropic SDK</span>
+      </div>
+      <div class="skill-block ai-block">
+        <div class="skill-block-label">⚡ AI-Augmented Workflow (Superpower)</div>
+        <span class="badge ai">Advanced Prompt Engineering</span>
+        <span class="badge ai">RAG-driven Development</span>
+        <span class="badge ai">Cursor / Windsurf</span>
+        <span class="badge ai">GitHub Copilot</span>
+        <span class="badge ai">LLM Orchestration</span>
+        <span class="badge ai">Claude / GPT-4 Integration</span>
+        <span class="badge ai">Rapid Prototyping via AI IDE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── EDUCATION ─── -->
+  <div class="section">
+    <div class="section-label">Education</div>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">B.S. Software Engineering</div>
+          <div class="card-company">Astana IT University (AITU) · Astana, Kazakhstan</div>
+        </div>
+        <div class="card-meta">2023 – 2027</div>
+      </div>
+      <p>Year 2/3. Focus: AI systems, computer vision, distributed systems. Thesis submitted early. Active in research competitions and startup-focused projects.</p>
+      <div class="result-line">1st place NSRC · Conference presenter at Nazarbayev University · Internship at KMG-Kumkol</div>
+    </div>
+  </div>
+
+  <!-- ══════════ JOB LISTINGS ══════════ -->
+
+  <hr class="page-divider">
+
+  <div class="jobs-header">Target <span>Vacancies</span></div>
+  <div class="jobs-subheader">// Matched to profile · Sorted by income potential · Target: ₸3.7M–₸7.5M/month toward Ray Residence</div>
+
+  <!-- LOCAL -->
+  <div class="job-category">
+    <div class="job-category-label">🇰🇿 Astana / Kazakhstan — On-site or Hybrid</div>
+
+    <div class="job-card local">
+      <div>
+        <div class="job-title">Middle/Senior iOS Developer</div>
+        <div class="job-company">Kaspi.kz · Astana</div>
+        <div class="job-desc">Kazakhstan's #1 super-app (12M MAU). Build Swift/SwiftUI features for Kaspi Pay, Kaspi Shop, and Kaspi Bank mobile clients. You'd own large parts of the iOS codebase. Best local brand for CV. <a href="https://job.kaspi.kz/vacancy/middle-senior-mobile-developer-android-ios" style="color:#8060ff">job.kaspi.kz →</a></div>
+        <div class="job-tags">
+          <span class="badge">Swift</span><span class="badge">SwiftUI</span><span class="badge">Fintech</span><span class="badge">Super-app</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">₸900K–1.4M</div>
+        <div class="salary-kzt">/month · ~$1,700–2,600</div>
+        <div class="job-location"><span class="dot local"></span> Astana</div>
+      </div>
+    </div>
+
+    <div class="job-card local">
+      <div>
+        <div class="job-title">Mobile Developer — iOS</div>
+        <div class="job-company">Kolesa Group · Astana / Almaty</div>
+        <div class="job-desc">Kazakhstan's top classifieds platform (kolesa.kz, krisha.kz, 12.5M users). iOS team building native apps for auto and real estate marketplaces. Strong engineering culture, modern tech stack, international product mindset.</div>
+        <div class="job-tags">
+          <span class="badge">Swift</span><span class="badge">iOS</span><span class="badge">Product</span><span class="badge">Marketplace</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">₸800K–1.2M</div>
+        <div class="salary-kzt">/month · ~$1,500–2,300</div>
+        <div class="job-location"><span class="dot local"></span> Hybrid</div>
+      </div>
+    </div>
+
+    <div class="job-card local">
+      <div>
+        <div class="job-title">iOS Engineer (AI Products)</div>
+        <div class="job-company">DAR / Jusan Tech · Astana</div>
+        <div class="job-desc">Growing fintech ecosystem building AI-powered banking and B2B products. iOS + AI integration work — a rare fit for your Anthropic SDK + Swift combo. Opportunity to pitch internal AI tooling as a vibe-coder advantage.</div>
+        <div class="job-tags">
+          <span class="badge">Swift</span><span class="badge">AI Integration</span><span class="badge">Banking</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">₸700K–1.1M</div>
+        <div class="salary-kzt">/month · ~$1,300–2,100</div>
+        <div class="job-location"><span class="dot local"></span> Astana</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REMOTE -->
+  <div class="job-category">
+    <div class="job-category-label">🌍 Remote — USA · Europe · UAE (Target: $5K–$15K/month)</div>
+
+    <div class="job-card remote">
+      <div>
+        <div class="job-title">Founding iOS Engineer</div>
+        <div class="job-company">Web3 Wallet / DeFi Startup (YC S24–S25 batch) · Remote</div>
+        <div class="job-desc">Seed/Series A crypto-native startup building mobile-first DeFi UX (wallets, trading, swaps). You'd be employee #3–8, owning the entire iOS surface. Your Solidity + Swift combo is the rarest possible fit. Find via <strong>workatastartup.com</strong> → filter: crypto, mobile, seed. Comp includes equity (0.25–1%).</div>
+        <div class="job-tags">
+          <span class="badge ai">Swift</span><span class="badge ai">Solidity</span><span class="badge ai">Web3</span><span class="badge ai">Equity</span><span class="badge ai">Founding</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">$5,000–9,000</div>
+        <div class="salary-kzt">/month · ₸2.65M–4.77M</div>
+        <div class="job-location"><span class="dot"></span> Full Remote</div>
+      </div>
+    </div>
+
+    <div class="job-card remote">
+      <div>
+        <div class="job-title">Web3 Mobile SDK Engineer</div>
+        <div class="job-company">Alchemy / Rainbow / Phantom · Remote (US)</div>
+        <div class="job-desc">Infrastructure and wallet companies building iOS SDKs for the next billion crypto users. Alchemy explicitly hired for this role — "first iOS hire, own the SDK." Your Wagmi/Viem + Swift background is the exact target profile. Apply via <strong>web3.career</strong> and company career pages directly.</div>
+        <div class="job-tags">
+          <span class="badge ai">Swift</span><span class="badge ai">Wagmi</span><span class="badge ai">SDK</span><span class="badge ai">The Graph</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">$7,000–14,000</div>
+        <div class="salary-kzt">/month · ₸3.7M–7.4M</div>
+        <div class="job-location"><span class="dot"></span> Remote (US TZ)</div>
+      </div>
+    </div>
+
+    <div class="job-card remote">
+      <div>
+        <div class="job-title">Senior iOS Engineer — Crypto / Fintech</div>
+        <div class="job-company">Bybit / OKX / Binance · Dubai (UAE, Remote-Friendly)</div>
+        <div class="job-desc">Major crypto exchanges building world-class mobile trading apps. UAE-based means no restrictions on crypto compensation, global pay rates, and a real path to relocation if desired. Senior-level iOS + crypto domain expertise is scarce and well-compensated here.</div>
+        <div class="job-tags">
+          <span class="badge ai">Swift</span><span class="badge ai">Crypto</span><span class="badge ai">Trading App</span><span class="badge ai">UAE</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">$6,000–12,000</div>
+        <div class="salary-kzt">/month · ₸3.18M–6.36M</div>
+        <div class="job-location"><span class="dot"></span> Dubai / Remote</div>
+      </div>
+    </div>
+
+    <div class="job-card remote">
+      <div>
+        <div class="job-title">iOS + AI Engineer (Founding)</div>
+        <div class="job-company">AI-native Consumer Startup · Remote (EU / US)</div>
+        <div class="job-desc">Early-stage AI consumer apps (productivity, health, social) need engineers who ship fast AND understand LLM integration. Your vibe-coding workflow + Swift + Anthropic SDK experience makes you a rare hire for a team building AI-powered iOS apps. Source: <strong>arc.dev</strong>, <strong>Contra</strong>, LinkedIn "Founding Engineer iOS".</div>
+        <div class="job-tags">
+          <span class="badge ai">Swift</span><span class="badge ai">LLM</span><span class="badge ai">Anthropic SDK</span><span class="badge ai">AI Product</span>
+        </div>
+      </div>
+      <div class="salary-box">
+        <div class="salary">$5,500–10,000</div>
+        <div class="salary-kzt">/month · ₸2.9M–5.3M</div>
+        <div class="job-location"><span class="dot"></span> Full Remote</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span>Bekdaulet Bolatov · bolatovbekdaulet4@gmail.com</span>
+    <span>Updated May 2026</span>
+  </div>
+
+</div>
+</body>
+</html>
